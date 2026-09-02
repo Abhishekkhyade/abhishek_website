@@ -1,136 +1,707 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Abhishek Khyade portfolio website showcasing education, skills, and contact details." />
     <title>Abhishek Khyade | Portfolio</title>
-
     <style>
+        :root {
+            --bg-dark: #0b1020;
+            --bg-soft: #111827;
+            --card: rgba(17, 24, 39, 0.82);
+            --card-light: #f8fafc;
+            --text: #e5e7eb;
+            --muted: #94a3b8;
+            --primary: #6ee7b7;
+            --primary-strong: #34d399;
+            --accent: #7dd3fc;
+            --border: rgba(148, 163, 184, 0.2);
+            --shadow: 0 18px 40px rgba(15, 23, 42, 0.45);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(180deg, #0a1020 0%, #111827 100%);
+            color: var(--text);
+            line-height: 1.6;
         }
 
-        header {
-            background-color: #222;
-            color: white;
-            text-align: center;
-            padding: 40px;
-        }
-
-        header h1 {
-            font-size: 36px;
-        }
-
-        nav {
-            background-color: #333;
-            text-align: center;
-            padding: 15px;
-        }
-
-        nav a {
-            color: white;
+        a {
+            color: inherit;
             text-decoration: none;
-            margin: 15px;
-            font-size: 18px;
         }
 
-        nav a:hover {
-            color: #00bcd4;
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            width: min(1100px, calc(100% - 32px));
+            margin: 0 auto;
+        }
+
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            backdrop-filter: blur(12px);
+            background: rgba(11, 16, 32, 0.72);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 0;
+            gap: 20px;
+        }
+
+        .brand {
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .brand span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            font-size: 0.96rem;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a:focus {
+            color: var(--primary);
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: #0f172a;
+            padding: 10px 18px;
+            border-radius: 999px;
+            font-weight: 700;
+            box-shadow: var(--shadow);
+        }
+
+        .hero {
+            padding: 80px 0 60px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.3fr 0.9fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            padding: 8px 14px;
+            border-radius: 999px;
+            color: var(--primary);
+            background: rgba(110, 231, 183, 0.08);
+            border: 1px solid rgba(110, 231, 183, 0.25);
+            font-size: 0.8rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.6rem, 5vw, 4.5rem);
+            line-height: 1.08;
+            letter-spacing: -0.05em;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 .highlight {
+            color: var(--primary);
+        }
+
+        .hero p {
+            font-size: 1.08rem;
+            color: var(--muted);
+            max-width: 620px;
+            margin-bottom: 28px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 999px;
+            padding: 14px 22px;
+            font-weight: 700;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+        }
+
+        .button.primary {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: #0f172a;
+            box-shadow: var(--shadow);
+        }
+
+        .button.secondary {
+            border: 1px solid var(--border);
+            color: var(--text);
+            background: rgba(15, 23, 42, 0.3);
+        }
+
+        .quick-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+        }
+
+        .stat {
+            min-width: 130px;
+        }
+
+        .stat strong {
+            display: block;
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 4px;
+        }
+
+        .stat span {
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .profile-card {
+            background: linear-gradient(145deg, rgba(36, 51, 78, 0.9), rgba(15, 23, 42, 0.95));
+            border: 1px solid var(--border);
+            border-radius: 28px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-card::before {
+            content: "";
+            position: absolute;
+            inset: -40% auto auto -20%;
+            width: 220px;
+            height: 220px;
+            background: radial-gradient(circle, rgba(110, 231, 183, 0.42), transparent 60%);
+        }
+
+        .profile-visual {
+            position: relative;
+            background: linear-gradient(135deg, rgba(110, 231, 183, 0.2), rgba(125, 211, 252, 0.15));
+            border-radius: 24px;
+            min-height: 420px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(148, 163, 184, 0.2);
+        }
+
+        .avatar {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #dbeafe, #a7f3d0);
+            border: 6px solid rgba(255, 255, 255, 0.12);
+            display: grid;
+            place-items: center;
+            font-size: 4rem;
+            font-weight: 700;
+            color: #0f172a;
+            box-shadow: 0 20px 40px rgba(110, 231, 183, 0.18);
+        }
+
+        .mini-card {
+            position: absolute;
+            bottom: 18px;
+            left: 18px;
+            right: 18px;
+            background: rgba(15, 23, 42, 0.78);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 16px 18px;
+            backdrop-filter: blur(8px);
+        }
+
+        .mini-card strong {
+            display: block;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        .mini-card span {
+            color: var(--muted);
+            font-size: 0.9rem;
         }
 
         section {
-            max-width: 900px;
-            margin: 30px auto;
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
+            padding: 42px 0;
         }
 
-        h2 {
-            color: #222;
-            margin-bottom: 15px;
+        .section-heading {
+            margin-bottom: 24px;
         }
 
-        ul {
+        .section-heading h2 {
+            font-size: clamp(2rem, 3vw, 2.6rem);
+            margin-bottom: 10px;
+        }
+
+        .section-heading p {
+            color: var(--muted);
+            max-width: 680px;
+        }
+
+        .about-grid,
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 28px;
+        }
+
+        .card {
+            background: rgba(15, 23, 42, 0.78);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 28px;
+            box-shadow: var(--shadow);
+        }
+
+        .about-grid p,
+        .card p,
+        .card li {
+            color: var(--muted);
+        }
+
+        .info-list {
+            list-style: none;
+            display: grid;
+            gap: 14px;
+            margin-top: 18px;
+        }
+
+        .info-list li {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .info-list li span:first-child {
+            color: var(--text);
+            font-weight: 700;
+        }
+
+        .skills-grid,
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 22px;
+        }
+
+        .skill-card,
+        .project-card {
+            background: rgba(15, 23, 42, 0.78);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 24px;
+            box-shadow: var(--shadow);
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        .tag {
+            background: rgba(110, 231, 183, 0.1);
+            border: 1px solid rgba(110, 231, 183, 0.24);
+            color: var(--primary);
+            padding: 8px 12px;
+            border-radius: 999px;
+            font-size: 0.9rem;
+        }
+
+        .timeline {
+            display: grid;
+            gap: 16px;
+            margin-top: 18px;
+        }
+
+        .timeline-item {
+            background: rgba(15, 23, 42, 0.78);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 20px;
+        }
+
+        .timeline-item .year {
+            display: inline-block;
+            margin-bottom: 8px;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .timeline-item h3 {
+            font-size: 1.2rem;
+            margin-bottom: 6px;
+        }
+
+        .project-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+        }
+
+        .project-card ul {
             margin-left: 20px;
+            color: var(--muted);
+        }
+
+        .contact-card {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 20px;
+            background: rgba(15, 23, 42, 0.78);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+        }
+
+        .contact-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 16px;
+            display: grid;
+            place-items: center;
+            background: rgba(110, 231, 183, 0.12);
+            color: var(--primary);
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .contact-card strong {
+            display: block;
+            margin-bottom: 4px;
         }
 
         footer {
+            padding: 28px 0 40px;
             text-align: center;
-            background-color: #222;
-            color: white;
-            padding: 20px;
-            margin-top: 30px;
+            color: var(--muted);
+            border-top: 1px solid var(--border);
+            margin-top: 26px;
+        }
+
+        @media (max-width: 860px) {
+            .hero-grid,
+            .about-grid,
+            .contact-grid,
+            .skills-grid,
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 540px) {
+            .hero {
+                padding-top: 60px;
+            }
+
+            .card,
+            .skill-card,
+            .project-card,
+            .profile-card {
+                padding: 20px;
+            }
+
+            .nav-links {
+                justify-content: center;
+            }
         }
     </style>
 </head>
-
 <body>
-
-    <!-- Header -->
-    <header>
-        <h1>Abhishek Khyade</h1>
-        <p>Student | SVÉRI College of Engineering, Pandharpur</p>
+    <header class="site-header">
+        <div class="container nav">
+            <a href="#top" class="brand">Abhishek <span>K</span></a>
+            <nav class="nav-links" aria-label="Main navigation">
+                <a href="#about">About</a>
+                <a href="#education">Education</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <a class="nav-cta" href="mailto:abhishekkhyade38@gmail.com">Hire Me</a>
+        </div>
     </header>
 
-    <!-- Navigation -->
-    <nav>
-        <a href="#about">About</a>
-        <a href="#education">Education</a>
-        <a href="#skills">Skills</a>
-        <a href="#contact">Contact</a>
-    </nav>
+    <main id="top">
+        <section class="hero">
+            <div class="container hero-grid">
+                <div>
+                    <span class="eyebrow">Student Developer</span>
+                    <h1>Hello, I'm <span class="highlight">Abhishek Khyade</span></h1>
+                    <p>
+                        I’m a passionate student at SVÉRI College of Engineering, Pandharpur,
+                        focused on learning technology, building practical web experiences,
+                        and growing as a future developer.
+                    </p>
 
-    <!-- About Section -->
-    <section id="about">
-        <h2>About Me</h2>
-        <p>
-            Hello! My name is Abhishek Khyade. I am a student at
-            SVÉRI College of Engineering. I am interested in technology,
-            programming, and web development.
-        </p>
-    </section>
+                    <div class="hero-actions">
+                        <a class="button primary" href="#contact">Contact Me</a>
+                        <a class="button secondary" href="#projects">View Work</a>
+                    </div>
 
-    <!-- Education Section -->
-    <section id="education">
-        <h2>Education</h2>
-        <p>
-            I am currently studying at SVÉRI College of Engineering,
-            Pandharpur.
-        </p>
-    </section>
+                    <div class="quick-stats" aria-label="Quick stats">
+                        <div class="stat">
+                            <strong>1+</strong>
+                            <span>Years Learning</span>
+                        </div>
+                        <div class="stat">
+                            <strong>4+</strong>
+                            <span>Core Skills</span>
+                        </div>
+                        <div class="stat">
+                            <strong>100%</strong>
+                            <span>Ambition</span>
+                        </div>
+                    </div>
+                </div>
 
-    <!-- Skills Section -->
-    <section id="skills">
-        <h2>My Skills</h2>
-        <ul>
-            <li>HTML</li>
-            <li>CSS</li>
-            <li>Basic C Programming</li>
-            <li>Web Development</li>
-        </ul>
-    </section>
+                <div class="profile-card" aria-label="Profile summary card">
+                    <div class="profile-visual">
+                        <div class="avatar">AK</div>
+                        <div class="mini-card">
+                            <strong>Web Enthusiast</strong>
+                            <span>HTML • CSS • Frontend Learning</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <!-- Contact Section -->
-    <section id="contact">
-        <h2>Contact Me</h2>
-        <p>Email: abhishekkhyade38@gmail.com</p>
-        <p>Location: Maharashtra, India</p>
-    </section>
+        <section id="about">
+            <div class="container">
+                <div class="section-heading">
+                    <h2>About Me</h2>
+                    <p>
+                        I enjoy learning new technologies and designing simple, clean digital experiences.
+                        My goal is to keep improving my technical skills while building user-friendly solutions.
+                    </p>
+                </div>
 
-    <!-- Footer -->
+                <div class="about-grid">
+                    <div class="card">
+                        <p>
+                            I am a student pursuing my engineering journey at SVÉRI College of Engineering,
+                            Pandharpur. My interests are rooted in programming, web development, and problem-solving.
+                            I’m currently improving my skills in front-end development and exploring how to turn ideas
+                            into engaging, responsive interfaces.
+                        </p>
+                        <ul class="info-list">
+                            <li><span>Name</span><span>Abhishek Khyade</span></li>
+                            <li><span>College</span><span>SVÉRI College of Engineering</span></li>
+                            <li><span>Location</span><span>Maharashtra, India</span></li>
+                            <li><span>Email</span><span>abhishekkhyade38@gmail.com</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h3>What I’m Focused On</h3>
+                        <ul class="info-list">
+                            <li><span>Frontend</span><span>HTML, CSS</span></li>
+                            <li><span>Programming</span><span>C, Logic Building</span></li>
+                            <li><span>Design</span><span>Responsive UI</span></li>
+                            <li><span>Growth</span><span>Continuous Learning</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="education">
+            <div class="container">
+                <div class="section-heading">
+                    <h2>Education</h2>
+                    <p>I’m building my foundation in engineering and technology while strengthening practical skills through learning and projects.</p>
+                </div>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <span class="year">Current</span>
+                        <h3>B.Tech / Engineering Student</h3>
+                        <p>SVÉRI College of Engineering, Pandharpur</p>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="year">Focus</span>
+                        <h3>Technology and Development</h3>
+                        <p>Exploring web technologies, problem solving, and software fundamentals.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills">
+            <div class="container">
+                <div class="section-heading">
+                    <h2>Skills</h2>
+                    <p>Building a strong base in design, coding, and development fundamentals.</p>
+                </div>
+
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <h3>Web Development</h3>
+                        <div class="skill-tags">
+                            <span class="tag">HTML</span>
+                            <span class="tag">CSS</span>
+                            <span class="tag">Responsive Design</span>
+                            <span class="tag">Web Layouts</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <h3>Programming</h3>
+                        <div class="skill-tags">
+                            <span class="tag">C Programming</span>
+                            <span class="tag">Logic Building</span>
+                            <span class="tag">Problem Solving</span>
+                            <span class="tag">Debugging</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <h3>Creative Skills</h3>
+                        <div class="skill-tags">
+                            <span class="tag">UI Structure</span>
+                            <span class="tag">Visual Design</span>
+                            <span class="tag">User Experience</span>
+                            <span class="tag">Clean Styling</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <h3>Learning Strengths</h3>
+                        <div class="skill-tags">
+                            <span class="tag">Fast Learner</span>
+                            <span class="tag">Curiosity</span>
+                            <span class="tag">Adaptability</span>
+                            <span class="tag">Motivation</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <div class="container">
+                <div class="section-heading">
+                    <h2>Projects & Practice</h2>
+                    <p>Focused on creating clean, practical front-end work and sharpening my development skills through hands-on practice.</p>
+                </div>
+
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <h3>Personal Portfolio</h3>
+                        <ul>
+                            <li>Designed a simple personal website with a modern layout.</li>
+                            <li>Used semantic HTML and organized content sections.</li>
+                            <li>Focused on readability, responsiveness, and visual appeal.</li>
+                        </ul>
+                    </div>
+
+                    <div class="project-card">
+                        <h3>Front-End Practice</h3>
+                        <ul>
+                            <li>Learning responsive design patterns and page structure.</li>
+                            <li>Experimenting with clean styling and layout balance.</li>
+                            <li>Improving skills through real-world UI exercises.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container">
+                <div class="section-heading">
+                    <h2>Contact</h2>
+                    <p>I’m open to learning opportunities, collaborations, and conversations about technology and development.</p>
+                </div>
+
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <div class="contact-icon">@</div>
+                        <div>
+                            <strong>Email</strong>
+                            <a href="mailto:abhishekkhyade38@gmail.com">abhishekkhyade38@gmail.com</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="contact-icon">◎</div>
+                        <div>
+                            <strong>Location</strong>
+                            <span>Maharashtra, India</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
     <footer>
-        <p>© 2026 Abhishek Khyade | My Portfolio</p>
+        <div class="container">
+            <p>© <span id="year"></span> Abhishek Khyade | Portfolio</p>
+        </div>
     </footer>
 
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
 </body>
 </html>
+
